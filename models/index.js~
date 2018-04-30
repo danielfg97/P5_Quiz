@@ -3,14 +3,13 @@ const path = require('path');
 const Sequelize = require('sequelize');
 // To use SQLite data base:
 //    DATABASE_URL = sqlite:quiz.sqlite
-const url = "sqlite:quizzes.sqlite";
-const options = ({logging: false, operatorsAliases:false});
-const sequelize = new Sequelize(url, options);
+const url = "sqlite:quiz.sqlite";
+const sequelize = new Sequelize(url);
 // Import the definition of the Quiz Table from quiz.js
 const Quiz = sequelize.import(path.join(__dirname, 'quiz'));
 
 sequelize.sync()
-.then(() => sequelize.models.Quiz.count())
+.then(() => sequelize.models.quiz.count())
 .then(count => {
 	if(count===0){
 		return (
